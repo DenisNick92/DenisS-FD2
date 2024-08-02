@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        color: antiquewhite;
+        background-color: cadetblue;
+        width: 100px;
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    button:hover {
+        cursor: pointer;
+        background-color: burlywood;
+    }
+</style>
+
+<body>
+    <button onclick="addRecept()">Add recept</button>
+    <button onclick="info()">Info</button>
+    <button onclick="deleteDrink()">Delete</button>
+    <button onclick="showMenu()">List</button>
+    <script>
+        class HashStorageFunc {
+            drinks = {};
+
+            addValue(key, value) {
+                this.drinks[key] = value;
+            }
+            getValue(key) {
+                return (this.drinks[key])
+            }
+            deleteValue(key) {
+                if (key in this.drinks) {
+                    delete this.drinks[key];
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            getKeys(key) {
+                let menuArray = [];
+                for (let key in this.drinks) {
+                    menuArray.push(key);
+                } return menuArray;
+            }
+        };
+
+        function addRecept() {
+            let newDrink = {}
+            let name = prompt('Введите название');
+            while (name === "" || name[0] === ' ') {
+                name = prompt('Введите корректное название')
+            }
+
+            let alko = confirm('Напиток алкогольный?')
+            if (alko === true) {
+                alko = 'alcohol'
+            } else {
+                alko = 'not alcohol'
+            }
+
+            let recept = prompt('Введите рецепт');
+            while (recept === "" || recept[0] === ' ') {
+                recept = prompt('Введите корректно рецепт')
+
+            }
+            newDrink.name = name;
+            newDrink.alko = alko;
+            newDrink.recept = recept;
+
+            drinkStorage.addValue(name, newDrink)
+        }
+
+
+        function info() {
+            let name = prompt('Введите название');
+            while (name === "" || name[0] === ' ') {
+                name = prompt('Введите корректное название')
+            }
+            let info = drinkStorage.getValue(name);
+            if (info === undefined) {
+                alert('Такого напитка, увы, нет')
+            }
+            else {
+                alert(
+                    `Напиток: ${info.name}\nАлкокольный: ${info.alko}\nРецепт: ${info.recept}
+            `)
+            }
+        }
+
+        function deleteDrink() {
+            let name = prompt('Введите название');
+            while (name === "" || name[0] === ' ') {
+                name = prompt('Введите корректное название')
+            }
+            if (drinkStorage.deleteValue(name)) {
+                alert('Напиток удален')
+            }
+            else {
+                alert(
+                    'Такого напитка, увы, нет')
+            }
+        }
+
+        function showMenu() {
+            let menu = drinkStorage.getKeys();
+
+            alert(`${menu}`)
+        }
+        let drinkStorage = new HashStorageFunc();
+
+    </script>
+</body>
+
+</html>
