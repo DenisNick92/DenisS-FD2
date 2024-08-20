@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    const strOld = 'My name is Denis'
+    let oldStr = [];
+    let newStr = [];
+    let strNew = ''
+    function povorot(){
+        oldStr = strOld.split(' ')
+        oldStr.forEach((e)=> {
+            newStr.unshift(e)
+        }
+        )
+        strNew = newStr.join(' ')
+    }
+    
+    povorot()
+    
+    </script>
+</body>
+</html>
