@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function vowels_FE(str) {
+            let strArr = str.split('')
+            let count = 0;
+            strArr.forEach(e => {
+                if (e == 'а' || e == 'е' || e == 'и' || e == 'ё' || e == 'о' || e == 'у' || e == 'ы' || e == 'э' || e == 'ю' || e == 'я') {
+                    count += 1;
+                }
+            });
+            return count
+        }
+
+        function vowels_filter(str) {
+            let strArr = str.split('')
+            let count = 0;
+            strArr.filter(e => {
+                if (e == 'а' || e == 'е' || e == 'и' || e == 'ё' || e == 'о' || e == 'у' || e == 'ы' || e == 'э' || e == 'ю' || e == 'я') {
+                    count += 1;
+                }
+            });
+            return count
+        }
+
+
+        function vowels_reduce(str) {
+            const vowels = 'аоуеыэяёи';
+            let strArr = str.split('')
+            let count = 0;
+            return strArr.reduce((count, elem) => {
+                if (vowels.includes(elem)) {
+                    count += 1;
+                }
+                return count;
+            }, 0);
+        }
+        
+
+
+
+
+
+    </script>
+</body>
+
+</html>
